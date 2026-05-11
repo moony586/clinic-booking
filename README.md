@@ -1,54 +1,61 @@
-# نظام حجز مواعيد عيادة طبية
+# Clinic Appointment Booking System
 
-مشروع ويب بسيط لإدارة حجوزات عيادة طبية، يحتوي على واجهتين رئيسيتين:
+A simple web-based clinic appointment booking system built for the SE1201 Foundations of Software Engineering project.
 
-- واجهة المريض: تسجيل الدخول، حجز موعد، عرض حجوزاتي.
-- واجهة الدكتور: تسجيل الدخول، عرض الحجوزات، إدارة المواعيد المتاحة، تغيير حالة الحجز.
+The system helps patients book clinic appointments and helps the doctor manage appointments and available times.
 
-## أعضاء المشروع
+## Project Overview
 
-| الاسم | الرقم الجامعي |
-|---|---|
-| تغريد عبدالله الحجاجي | 44610901 |
-| ميار إبراهيم المزيني | 44611482 |
-| ريماس سعيد العبيدي | 445008555 |
+Clinic Appointment Booking System is designed to make appointment booking easier and more organized. The system includes two main users:
 
-## التقنيات المستخدمة
+- Patient
+- Doctor
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: PHP
-- Database: MySQL
+The patient can create an account, log in, book an appointment, and view bookings.  
+The doctor can log in, view appointments, update appointment status, and manage available working times.
 
-## طريقة التشغيل
+## Features
 
-1. شغّل XAMPP أو Laragon.
-2. انسخ مجلد المشروع إلى مجلد `htdocs` في XAMPP.
-3. افتح phpMyAdmin.
-4. أنشئ قاعدة بيانات باسم:
-   `clinic_booking`
-5. استورد ملف قاعدة البيانات من:
-   `database/clinic_booking.sql`
-6. عدّل بيانات الاتصال بقاعدة البيانات من الملف:
-   `backend/config/db.php`
-7. افتح المشروع من المتصفح:
-   `http://localhost/clinic_project/frontend/index.html`
+### Patient Features
+- Create a new account
+- Log in to the system
+- Book an appointment
+- View appointments
 
-## حسابات تجريبية
+### Doctor Features
+- Log in to the system
+- View all appointments
+- Update appointment status
+- Add available times
+- Delete available times
 
-### الدكتور
-- البريد: `doctor@clinic.com`
-- كلمة المرور: `123456`
+## Technologies Used
 
-### المريض
-- البريد: `patient@clinic.com`
-- كلمة المرور: `123456`
+- HTML
+- CSS
+- JavaScript
+- PHP
+- MySQL
 
-## ملاحظات
+## Project Structure
 
-هذا المشروع نسخة تعليمية بسيطة، ويمكن تطويره لاحقًا بإضافة:
-
-- إشعارات واتساب.
-- دفع إلكتروني.
-- أكثر من دكتور.
-- ملف طبي للمريض.
+```text
+clinic_booking_project/
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+├── backend/
+│   ├── api/
+│   │   ├── appointments.php
+│   │   ├── availability.php
+│   │   ├── doctors.php
+│   │   ├── helpers.php
+│   │   ├── login.php
+│   │   └── register.php
+│   └── config/
+│       └── db.php
+├── database/
+│   └── clinic_booking.sql
+└── README.md.
 - تقارير إدارية.
