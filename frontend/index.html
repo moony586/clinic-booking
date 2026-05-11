@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عيادة الحياة - حجز مواعيد</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">💙 عيادة الحياة</div>
+        <nav>
+            <a href="#home">الرئيسية</a>
+            <a href="#login">تسجيل الدخول</a>
+            <a href="#book">حجز موعد</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero section">
+        <div class="hero-text">
+            <span class="badge">نظام حجز طبي بسيط</span>
+            <h1>نحن نهتم بصحتك<br>احجز موعدك بكل سهولة</h1>
+            <p>منصة بسيطة لإدارة حجوزات العيادة بين الدكتور والمريض.</p>
+            <div class="actions">
+                <a class="btn primary" href="#book">احجز موعد الآن</a>
+                <a class="btn secondary" href="#login">تسجيل الدخول</a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <h3>مميزات النظام</h3>
+            <ul>
+                <li>حجز موعد سريع</li>
+                <li>لوحة مريض ولوحة دكتور</li>
+                <li>متابعة حالة الحجز</li>
+                <li>منع تعارض المواعيد</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="login" class="section grid-2">
+        <div class="card">
+            <h2>تسجيل الدخول</h2>
+            <p>اختر نوع الحساب ثم أدخل البيانات.</p>
+            <label>نوع المستخدم</label>
+            <select id="loginRole">
+                <option value="patient">مريض</option>
+                <option value="doctor">دكتور</option>
+            </select>
+            <label>البريد الإلكتروني</label>
+            <input id="loginEmail" type="email" placeholder="example@email.com" />
+            <label>كلمة المرور</label>
+            <input id="loginPassword" type="password" placeholder="******" />
+            <button class="btn primary full" onclick="login()">دخول</button>
+            <div class="hint">تجربة: patient@clinic.com أو doctor@clinic.com / كلمة المرور 123456</div>
+        </div>
+
+        <div class="card soft">
+            <h2>إنشاء حساب مريض</h2>
+            <label>الاسم</label>
+            <input id="regName" placeholder="اسم المريض" />
+            <label>البريد الإلكتروني</label>
+            <input id="regEmail" type="email" placeholder="patient@email.com" />
+            <label>رقم الجوال</label>
+            <input id="regPhone" placeholder="05xxxxxxxx" />
+            <label>كلمة المرور</label>
+            <input id="regPassword" type="password" placeholder="******" />
+            <button class="btn secondary full" onclick="registerPatient()">إنشاء حساب</button>
+        </div>
+    </section>
+
+    <section id="book" class="section card">
+        <h2>حجز موعد</h2>
+        <div class="form-grid">
+            <div>
+                <label>الدكتور</label>
+                <select id="doctorSelect"></select>
+            </div>
+            <div>
+                <label>التاريخ</label>
+                <input id="appointmentDate" type="date" />
+            </div>
+            <div>
+                <label>الوقت</label>
+                <input id="appointmentTime" type="time" />
+            </div>
+            <div>
+                <label>سبب الزيارة</label>
+                <input id="reason" placeholder="كشف عام، متابعة..." />
+            </div>
+        </div>
+        <button class="btn primary" onclick="createAppointment()">تأكيد الحجز</button>
+        <p class="hint">يجب تسجيل الدخول كمريض قبل الحجز.</p>
+    </section>
+
+    <section id="dashboard" class="section hidden">
+        <div class="dashboard-header">
+            <div>
+                <h2 id="dashboardTitle">لوحة التحكم</h2>
+                <p id="welcomeText"></p>
+            </div>
+            <button class="btn danger" onclick="logout()">تسجيل الخروج</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat"><span>إجمالي الحجوزات</span><strong id="totalAppointments">0</strong></div>
+            <div class="stat"><span>مؤكدة</span><strong id="confirmedAppointments">0</strong></div>
+            <div class="stat"><span>بانتظار التأكيد</span><strong id="pendingAppointments">0</strong></div>
+        </div>
+
+        <div class="card">
+            <h3>الحجوزات</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>الوقت</th>
+                            <th>الدكتور</th>
+                            <th>المريض</th>
+                            <th>السبب</th>
+                            <th>الحالة</th>
+                            <th id="actionHeader">الإجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="doctorTools" class="card hidden">
+            <h3>إدارة الأوقات المتاحة</h3>
+            <div class="form-grid">
+                <input id="availableDay" placeholder="اليوم مثل: الأحد" />
+                <input id="startTime" type="time" />
+                <input id="endTime" type="time" />
+                <input id="slotDuration" type="number" value="30" />
+            </div>
+            <button class="btn secondary" onclick="addAvailability()">إضافة وقت</button>
+            <div id="availabilityList" class="availability-list"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>إعداد: تغريد عبدالله الحجاجي، ميار إبراهيم المزيني، ريماس سعيد العبيدي</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
